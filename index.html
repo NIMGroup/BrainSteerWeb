@@ -12,6 +12,7 @@
 </head>
 <body>
   <a class="skip-link" href="#main">跳至主要内容</a>
+  <canvas class="neural-canvas" id="neuralCanvas" aria-hidden="true"></canvas>
   <div class="scroll-progress" aria-hidden="true"><span id="scrollProgress"></span></div>
 
   <header class="site-header" id="top">
@@ -20,23 +21,23 @@
         <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 44 44"><path d="M13 11.5c-5 3-7 9.1-4.7 14.4 1.2 2.8 3.8 5 7 5.6M31 11.5c5 3 7 9.1 4.7 14.4-1.2 2.8-3.8 5-7 5.6"/><path d="M16 8.5c3.2-2 8.8-2 12 0v27c-3.2 2-8.8 2-12 0z"/><circle cx="22" cy="14" r="2"/><circle cx="22" cy="22" r="2"/><circle cx="22" cy="30" r="2"/><path d="M14 14h8M22 22h11M11 30h11"/></svg></span>
         <span class="brand-type"><strong>BrainSteer</strong><small>NEUROMODULATION INTELLIGENCE</small></span>
       </a>
-      <nav class="desktop-nav" aria-label="主导航"><a href="#platform">产品</a><a href="#solutions">解决方案</a><a href="#scenarios">应用场景</a><a href="#innovation">科技创新</a><a href="#value">商业价值</a></nav>
+      <nav class="desktop-nav" aria-label="主导航"><a href="#platform">产品</a><a href="#modules">八大模块</a><a href="#engine">靶点发现</a><a href="#simulation">仿真引擎</a><a href="#compare">竞品对比</a><a href="#blueprints">技术蓝图</a></nav>
       <a class="nav-cta" href="#collaborate">合作共创 <span aria-hidden="true">↗</span></a>
       <button class="menu-toggle" id="menuToggle" type="button" aria-expanded="false" aria-controls="mobileNav" aria-label="打开导航菜单"><span></span><span></span></button>
     </div>
-    <nav class="mobile-nav" id="mobileNav" aria-label="移动端导航" hidden><a href="#platform">产品</a><a href="#solutions">解决方案</a><a href="#scenarios">应用场景</a><a href="#innovation">科技创新</a><a href="#value">商业价值</a><a href="#collaborate">合作共创</a></nav>
+    <nav class="mobile-nav" id="mobileNav" aria-label="移动端导航" hidden><a href="#platform">产品</a><a href="#modules">八大模块</a><a href="#engine">靶点发现</a><a href="#simulation">仿真引擎</a><a href="#workflow">工作流</a><a href="#scenarios">应用场景</a><a href="#compare">产品对比</a><a href="#impact">临床价值</a><a href="#blueprints">技术蓝图</a><a href="#collaborate">合作共创</a></nav>
   </header>
 
   <main id="main">
     <section class="hero" aria-labelledby="heroTitle">
-      <div class="hero-media" aria-hidden="true"><img src="./assets/brainsteer-clinical-team.webp" alt=""></div>
+      <div class="hero-media" aria-hidden="true"><video autoplay muted loop playsinline preload="metadata" poster="./assets/brainsteer-pipeline.webp"><source src="./assets/brainsteer-film-v2.mp4" type="video/mp4"></video></div>
       <div class="hero-grid" aria-hidden="true"></div><div class="hero-scan" aria-hidden="true"></div>
       <div class="container hero-content">
         <div class="hero-copy reveal">
           <div class="eyebrow"><span></span> PRECISION NEUROMODULATION OS</div>
-          <h1 id="heroTitle">让脑网络成为<br><em>可导航的治疗地图</em></h1>
-          <p>BrainSteer 将多模态神经影像、个体化脑连接组、智能靶点推荐、刺激场仿真与实时空间导航整合为一套可追溯系统，贯通<strong>“看见—定位—调控—评估”</strong>的完整闭环。</p>
-          <div class="hero-actions"><a class="button button-primary" href="#platform">探索 BrainSteer <span aria-hidden="true">↓</span></a><a class="button button-video" href="#film"><span class="play-dot" aria-hidden="true">▶</span> 观看产品概念片</a></div>
+          <h1 id="heroTitle">看见网络<br><em>驾驭环路</em></h1>
+          <p>影像 × 连接组 × 仿真 × 导航 × 疗效学习</p>
+          <div class="hero-actions"><a class="button button-primary" href="#workflow">进入工作流 <span aria-hidden="true">↓</span></a><a class="button button-video" href="#film"><span class="play-dot" aria-hidden="true">▶</span> 21s 概念片</a></div>
           <div class="hero-proof" aria-label="BrainSteer 产品特点"><span><b>多模态</b><small>MRI · CT · EEG/MEG</small></span><span><b>多设备</b><small>TMS · DBS · tFUS · BCI</small></span><span><b>全闭环</b><small>PLAN · GUIDE · LEARN</small></span></div>
         </div>
       </div>
@@ -48,8 +49,8 @@
     <section class="manifesto" id="manifesto" aria-labelledby="manifestoTitle">
       <div class="container manifesto-grid">
         <div class="manifesto-index reveal"><span>01</span><small>WHY BRAINSTEER</small></div>
-        <h2 id="manifestoTitle" class="reveal">精准神经调控的核心，不是“找到一个坐标”，而是理解并引导一条<strong>因人而异的脑环路。</strong></h2>
-        <div class="manifesto-copy reveal"><p>标准坐标无法完整表达个体皮层形态、白质通路和功能网络差异；单次导航也无法解释为什么有效、如何复现、下一次怎样更好。</p><p>BrainSteer 以脑连接组为共同语言，把分散的影像、算法、设备和临床证据组织为一条可计算、可导航、可评估的决策链。</p></div>
+        <h2 id="manifestoTitle" class="reveal">不是再找一个坐标。<br>而是找到<strong>该被调控的环路。</strong></h2>
+        <div class="manifesto-copy reveal"><p>个体脑网络，是精准神经调控真正的坐标系。</p><p>BrainSteer 把数据、算法、设备与结果连成同一条证据链。</p></div>
       </div>
       <div class="container loop-ribbon reveal" aria-label="BrainSteer 核心闭环"><article><span>01</span><small>SEE</small><h3>看见网络</h3><p>构建个体结构—功能—电生理图谱</p></article><article><span>02</span><small>LOCATE</small><h3>定位靶点</h3><p>让每个候选点都有环路证据</p></article><article><span>03</span><small>TUNE</small><h3>精调刺激</h3><p>在实施前比较方向、剂量与覆盖</p></article><article><span>04</span><small>EVALUATE</small><h3>透明评估</h3><p>让每次结果都反馈到下一次决策</p></article></div>
     </section>
@@ -84,49 +85,188 @@
       </div>
     </section>
 
-    <section class="capabilities section" aria-labelledby="capabilitiesTitle">
+    <section class="module-observatory section" id="modules" aria-labelledby="capabilitiesTitle">
       <div class="container">
-        <div class="cap-heading reveal"><span class="section-index">04 / CAPABILITY STACK</span><h2 id="capabilitiesTitle">八个核心模块，加一层贯穿全流程的 AI 协作能力。</h2></div>
-        <div class="cap-grid">
-          <article class="cap-card cap-wide reveal"><span class="cap-no">01</span><div class="cap-symbol">◫</div><div><small>DATA FOUNDATION</small><h3>多模态预处理与质量控制</h3><p>支持 T1w、T2w、dMRI、fMRI、CT、PET、EEG/MEG 等数据进入统一工作区，完成去标识化、标准化、配准与质量审计。</p></div><em>T1 · dMRI · fMRI · CT · EEG</em></article>
-          <article class="cap-card reveal"><span class="cap-no">02</span><div class="cap-symbol">⌁</div><small>CONNECTOME</small><h3>连接组与脑图谱</h3><p>联合纤维束、功能网络、脑区图谱与疾病环路，解释局部刺激的全脑效应。</p></article>
-          <article class="cap-card reveal"><span class="cap-no">03</span><div class="cap-symbol">◎</div><small>TARGETING</small><h3>靶点智能推荐</h3><p>融合个体连接、循证知识与风险约束，生成可解释、可复核的候选靶点排序。</p></article>
-          <article class="cap-card reveal"><span class="cap-no">04</span><div class="cap-symbol">◉</div><small>SIMULATION</small><h3>刺激场仿真</h3><p>比较线圈、电极、入射路径、方向与剂量，评估目标覆盖和邻近结构风险。</p></article>
-          <article class="cap-card reveal"><span class="cap-no">05</span><div class="cap-symbol">⌖</div><small>NAVIGATION</small><h3>配准与实时引导</h3><p>统一患者、影像与设备坐标，实时显示靶点距离、姿态偏差与有效刺激位置。</p></article>
-          <article class="cap-card reveal"><span class="cap-no">06</span><div class="cap-symbol">◇</div><small>CLINICAL PATH</small><h3>临床路径管理</h3><p>组织筛查、基线、方案、实施、随访与多学科讨论，形成可审计流程。</p></article>
-          <article class="cap-card reveal"><span class="cap-no">07</span><div class="cap-symbol">↗</div><small>OUTCOME</small><h3>疗效与机制评估</h3><p>关联刺激剂量、量表、影像和电生理变化，呈现纵向趋势与网络机制。</p></article>
-          <article class="cap-card reveal"><span class="cap-no">08</span><div class="cap-symbol">⬡</div><small>INTEGRATION</small><h3>部署与开放集成</h3><p>以 API、算法容器和标准接口连接科研平台、医院系统与神经调控设备。</p></article>
+        <div class="observatory-head reveal"><span class="section-index">04 / EIGHT CORE MODULES</span><h2 id="capabilitiesTitle">八个模块，组成一套会进化的神经调控操作系统。</h2><p>点击模块，查看从开源底座到 BrainSteer 自研核心的完整技术链。</p></div>
+        <div class="module-cockpit reveal">
+          <div class="module-core-visual"><img src="./assets/blueprints/12-platform-base.webp" alt="BrainSteer 多模态影像、脑连接、AI 靶点、导航、闭环与报告底座"><div class="module-vignette"></div><div class="module-target" aria-hidden="true"><i></i><span></span></div><div class="module-orbit-label"><small>SYSTEM STATE</small><b>8 / 8 MODULES ONLINE</b></div></div>
+          <aside class="module-readout" aria-live="polite"><span id="moduleIndex">MODULE 01</span><small id="moduleKicker">TARGET ENGINE</small><h3 id="moduleTitle">靶点引擎</h3><p id="moduleTagline">为 TMS、tFUS、tES、DBS 生成患者个体化候选靶点。</p><div class="module-flow" id="moduleFlow">MRI → 个体结构 → 图谱映射 → 候选靶点 → 可达性约束</div><div class="module-stack" id="moduleStack"><i>ANTs</i><i>SynthSeg</i><i>Nilearn</i><i>neuromaps</i><i>vtk.js</i></div><div class="module-owned"><small>BRAINSTEER CORE</small><b id="moduleOwned">候选靶点生成 · Target Score · 置信度与解释</b></div></aside>
         </div>
-        <div class="ai-layer reveal"><span>+ AI COPILOT</span><div><h3>人机协同的证据编排层</h3><p>自动检查数据质量、组织多模态证据、解释靶点推荐并生成结构化报告；关键决策由专业人员确认并完整留痕。</p></div><b>HUMAN-IN-THE-LOOP</b></div>
+        <div class="module-switch" role="tablist" aria-label="BrainSteer 八个核心模块">
+          <button type="button" role="tab" aria-selected="true" data-module="0"><span>01</span><b>Target Engine</b><small>靶点引擎</small></button>
+          <button type="button" role="tab" aria-selected="false" data-module="1"><span>02</span><b>Connectome</b><small>连接组靶向</small></button>
+          <button type="button" role="tab" aria-selected="false" data-module="2"><span>03</span><b>Reverse Discovery</b><small>反向靶点发现</small></button>
+          <button type="button" role="tab" aria-selected="false" data-module="3"><span>04</span><b>Target Ranking</b><small>多模态排序</small></button>
+          <button type="button" role="tab" aria-selected="false" data-module="4"><span>05</span><b>Navigation</b><small>坐标与导航</small></button>
+          <button type="button" role="tab" aria-selected="false" data-module="5"><span>06</span><b>Planning</b><small>治疗计划</small></button>
+          <button type="button" role="tab" aria-selected="false" data-module="6"><span>07</span><b>Closed Loop</b><small>实时闭环</small></button>
+          <button type="button" role="tab" aria-selected="false" data-module="7"><span>08</span><b>Clinical UI</b><small>临床工作流</small></button>
+        </div>
+        <a class="blueprint-download reveal" href="./assets/docs/core-modules.pdf" target="_blank"><span>TECHNICAL BLUEPRINT</span><b>查看 8 个核心模块完整技术说明</b><i>↗</i></a>
       </div>
     </section>
 
-    <section class="workflow section" aria-labelledby="workflowTitle">
-      <div class="container"><div class="workflow-intro reveal"><span class="section-index">05 / CONTINUOUS WORKFLOW</span><h2 id="workflowTitle">一次病例，六个连续决策。</h2><p>不是算法拼盘，而是数据、模型、设备与人围绕同一个临床问题持续协同。</p></div><div class="workflow-track"><article class="reveal"><i>01</i><small>INPUT</small><h3>汇聚个体数据</h3><p>影像、量表、病史、电生理及既往刺激记录</p></article><article class="reveal"><i>02</i><small>MODEL</small><h3>重建脑网络</h3><p>结构、功能和动态脑状态的个体化表征</p></article><article class="reveal"><i>03</i><small>DECIDE</small><h3>排序候选靶点</h3><p>融合疾病环路、个体连接与循证知识</p></article><article class="reveal"><i>04</i><small>SIMULATE</small><h3>比较刺激方案</h3><p>实施前评估覆盖、方向、剂量和风险边界</p></article><article class="reveal"><i>05</i><small>NAVIGATE</small><h3>实时引导执行</h3><p>追踪设备位姿、靶点偏差与有效剂量</p></article><article class="reveal"><i>06</i><small>LEARN</small><h3>评估并迭代</h3><p>用随访结果更新证据与下一次策略</p></article></div></div>
+    <section class="discovery-engine section" id="engine" aria-labelledby="discoveryTitle">
+      <div class="discovery-backdrop" aria-hidden="true"><img src="./assets/blueprints/13-target-engine.webp" alt=""></div>
+      <div class="container discovery-shell">
+        <div class="discovery-hero reveal"><span class="section-index">TARGET DISCOVERY INTELLIGENCE</span><h2 id="discoveryTitle">不仅找到靶点。<br><em>还要发现下一个靶点。</em></h2><p>Evidence → Circuit → Simulation → Therapy → Real-world Learning</p></div>
+        <div class="three-layer reveal"><article><span>01</span><small>NAVIGATE</small><b>精准导航</b><p>解决“调得准”</p></article><article><span>02</span><small>DECIDE</small><b>智能决策</b><p>解决“为什么调这里”</p></article><article class="active"><span>03</span><small>DISCOVER</small><b>靶点发现</b><p>解决“未来还能调哪里”</p></article></div>
+        <div class="engine-console reveal">
+          <div class="engine-tabs" role="tablist" aria-label="靶点发现引擎信息层"><button type="button" role="tab" aria-selected="true" data-engine-tab="sources">多源数据</button><button type="button" role="tab" aria-selected="false" data-engine-tab="agents">10 智能体</button><button type="button" role="tab" aria-selected="false" data-engine-tab="scoring">评分体系</button><button type="button" role="tab" aria-selected="false" data-engine-tab="evidence">证据分级</button><button type="button" role="tab" aria-selected="false" data-engine-tab="playbooks">临床策略</button></div>
+          <div class="engine-panels">
+            <section class="engine-panel source-panel" data-engine-panel="sources"><div class="source-grid"><article><b>学术论文</b><small>TMS · DBS · BCI</small></article><article><b>临床指南</b><small>标准治疗</small></article><article><b>试验注册</b><small>前沿方向</small></article><article><b>公共脑影像</b><small>HCP · UKB · ADNI</small></article><article><b>真实世界数据</b><small>病例 · 参数 · 随访</small></article><article><b>脑图谱 / 连接组</b><small>Yeo · Glasser · Schaefer</small></article><article><b>不良事件</b><small>风险与禁忌</small></article></div><div class="llm-task-cloud"><span>文献筛选</span><span>PICO 抽取</span><span>靶点抽取</span><span>参数抽取</span><span>疗效抽取</span><span>证据分级</span><span>矛盾识别</span><span>假设生成</span></div></section>
+            <section class="engine-panel agent-panel" data-engine-panel="agents" hidden><div class="agent-orchestrator"><div class="agent-center"><span>TARGET</span><b>DISCOVERY</b><small>ORCHESTRATOR</small></div><div class="agent-grid"><button type="button" data-agent="0">Literature Scout</button><button type="button" data-agent="1">Evidence Grading</button><button type="button" data-agent="2">Circuit Mapping</button><button type="button" data-agent="3">Imaging Phenotype</button><button type="button" data-agent="4">Target Generator</button><button type="button" data-agent="5">Stimulation Simulation</button><button type="button" data-agent="6">Clinical Strategy</button><button type="button" data-agent="7">Safety & Compliance</button><button type="button" data-agent="8">Trial Design</button><button type="button" data-agent="9">Real-world Learning</button></div></div><div class="agent-readout"><small id="agentRole">文献侦察智能体</small><b id="agentMission">持续扫描论文、指南、临床试验与会议摘要</b><span id="agentOutput">输出：新靶点线索与证据增量</span></div></section>
+            <section class="engine-panel score-panel" data-engine-panel="scoring" hidden><div class="score-hex"><span>BIOLOGY<br><b>20%</b></span><span>IMAGING<br><b>20%</b></span><span>EVIDENCE<br><b>20%</b></span><span>REACHABILITY<br><b>15%</b></span><span>SAFETY<br><b>15%</b></span><span>TRANSLATION<br><b>10%</b></span><div><b>TARGET</b><small>SCORE</small></div></div><div class="score-copy"><h3>六维 Target Score</h3><p>生物学合理性 · 影像一致性 · 循证强度 · 可刺激性 · 安全性 · 商业与临床可落地性</p><div class="rank-track"><span>A 临床辅助</span><span>B 临床研究</span><span>C 回顾验证</span><span>D 暂不推荐</span></div></div></section>
+            <section class="engine-panel evidence-panel-v2" data-engine-panel="evidence" hidden><div><small>TARGET CLASS</small><article><b>A</b><span>强证据 · 低风险</span><em>医生确认后规划</em></article><article><b>B</b><span>中等证据 · 机制合理</span><em>前瞻性观察</em></article><article><b>C</b><span>潜力靶点 · 证据不足</span><em>回顾与仿真</em></article><article><b>D</b><span>弱证据 / 高风险</span><em>仅科研观察</em></article></div><div><small>EVIDENCE LEVEL</small><article><b>E5</b><span>多中心 RCT / Meta / 指南</span></article><article><b>E4</b><span>单中心 RCT / 前瞻队列</span></article><article><b>E3</b><span>回顾研究 / 多队列影像</span></article><article><b>E2</b><span>小样本 / 机制 / 病例系列</span></article><article><b>E1</b><span>动物 / 基础机制 / 单病例</span></article><article><b>E0</b><span>AI 推测 · 仅进入研究池</span></article></div></section>
+            <section class="engine-panel playbook-panel" data-engine-panel="playbooks" hidden><div class="phenotype-grid"><article><small>TRD · 认知控制障碍</small><b>DLPFC–ACC</b><span>高频 rTMS / iTBS</span></article><article><small>TRD · 快感缺失</small><b>vmPFC–Striatum</b><span>网络 TMS / DBS 研究</span></article><article><small>TRD · 焦虑共病</small><b>DLPFC–Insula–Amygdala</b><span>双靶点研究</span></article><article><small>PD · 运动迟缓</small><b>STN / GPi / SMA–M1</b><span>DBS / TMS 康复</span></article></div><div class="strategy-rail"><span>解剖靶点</span><span>连接靶点</span><span>环路靶点</span><i></i><span>单靶点</span><span>双靶点</span><span>序贯刺激</span><span>闭环刺激</span><span>联合康复</span></div><div class="parameter-map"><span>深度 → 强度</span><span>白质束方向 → 线圈方向</span><span>功能连接 → 频率 / 疗程</span><span>EEG → 闭环状态</span><span>既往反应 → 参数调整</span><span>不良事件 → 风险规避</span></div></section>
+          </div>
+        </div>
+        <div class="bottleneck-rail reveal"><span>阅读慢 → 持续扫描</span><span>证据散 → 知识图谱</span><span>专家经验 → 多智能体复核</span><span>试错高 → 先仿真验证</span><span>坐标难复用 → 标准靶点卡</span><span>反馈难积累 → 真实世界学习</span><span>AI 难信任 → 医生最终确认</span></div>
+        <a class="blueprint-download reveal" href="./assets/docs/target-discovery-engine.pdf" target="_blank"><span>FULL SYSTEM PAPER</span><b>查看新靶点发现与治疗决策智能引擎</b><i>↗</i></a>
+      </div>
+    </section>
+
+    <section class="simulation-lab section" id="simulation" aria-labelledby="simulationTitle">
+      <div class="container">
+        <div class="simulation-head reveal"><span class="section-index">COUNTERFACTUAL SIMULATION</span><h2 id="simulationTitle">治疗前，先在数字孪生脑中试一次。</h2><p>改变靶点、角度、强度与脑状态，实时观察概念仿真结果。</p></div>
+        <div class="sandbox reveal">
+          <div class="sandbox-visual"><img src="./assets/blueprints/06-simulation-engine-dark.webp" alt="BrainSteer 个体电场、脑网络响应与闭环刺激仿真引擎"><div class="field-focus" id="fieldFocus" aria-hidden="true"></div><div class="field-reticle" id="fieldReticle" aria-hidden="true"><i></i><span></span></div><div class="sandbox-status"><span></span><b>LIVE DIGITAL SANDBOX</b><small>ILLUSTRATIVE MODEL</small></div></div>
+          <div class="sandbox-console">
+            <div class="preset-row" aria-label="反事实预设"><button type="button" data-sim-preset="offset">靶点 +5 mm</button><button type="button" data-sim-preset="angle">角度 +15°</button><button type="button" data-sim-preset="intensity">强度 −10%</button><button type="button" data-sim-preset="fatigue">疲劳状态</button><button type="button" data-sim-preset="reset">RESET</button></div>
+            <label><span>靶点偏移 <b id="offsetValue">0 mm</b></span><input id="offsetControl" type="range" min="-10" max="10" value="0"></label>
+            <label><span>线圈 / 入射角 <b id="angleValue">0°</b></span><input id="angleControl" type="range" min="-30" max="30" value="0"></label>
+            <label><span>相对强度 <b id="intensityValue">100%</b></span><input id="intensityControl" type="range" min="70" max="120" value="100"></label>
+            <label><span>脑状态 <b id="stateValue">静息</b></span><input id="stateControl" type="range" min="0" max="2" value="0"></label>
+            <div class="sim-outputs"><article><span>目标覆盖</span><div><i id="coverageBar"></i></div><b id="coverageValue">94</b></article><article><span>非目标暴露</span><div><i id="offTargetBar"></i></div><b id="offTargetValue">14</b></article><article><span>安全余量</span><div><i id="safetyBar"></i></div><b id="safetyValue">92</b></article><article><span>模型不确定性</span><div><i id="uncertaintyBar"></i></div><b id="uncertaintyValue">12</b></article></div>
+            <div class="sim-advice"><small>MODEL INTERPRETATION</small><b id="simAdvice">目标覆盖充分；当前方案可进入医生复核。</b></div>
+          </div>
+        </div>
+        <div class="simulation-io reveal"><div><small>MULTIMODAL INPUT</small><span>MRI</span><span>dMRI</span><span>fMRI</span><span>EEG</span><span>EMG / MEP</span><span>HRV / ECG</span><span>眼动 / 行为</span><span>主观评分</span></div><i>→</i><div><small>SIMULATION OUTPUT</small><span>场分布</span><span>网络响应</span><span>方案优化</span><span>风险提示</span><span>参数建议</span><span>闭环反馈</span></div></div>
+        <p class="simulation-note reveal">交互结果仅用于解释 BrainSteer 的产品逻辑，不代表真实患者计算或临床建议；最终方案由专业人员在验证与注册范围内确认。</p>
+        <a class="blueprint-download reveal" href="./assets/docs/simulation-engine.pdf" target="_blank"><span>SIMULATION BLUEPRINT</span><b>查看刺激仿真引擎完整说明</b><i>↗</i></a>
+      </div>
+    </section>
+
+    <section class="workflow section" id="workflow" aria-labelledby="workflowTitle">
+      <div class="container">
+        <div class="workflow-intro reveal"><span class="section-index">05 / WORKFLOW + PIPELINE</span><h2 id="workflowTitle">从原始数据，到下一次更好的决策。</h2><p>一条临床线，一条计算线；全程同病例、同坐标、同证据。</p></div>
+        <div class="pipeline-cinema reveal">
+          <video autoplay muted loop playsinline preload="metadata" poster="./assets/brainsteer-pipeline.webp" aria-label="BrainSteer 从影像到神经调控设备的工作流场景"><source src="./assets/brainsteer-pipeline-12s.mp4" type="video/mp4"></video>
+          <div class="pipeline-hud" aria-hidden="true"><span>RAW</span><i></i><span>CONNECTOME</span><i></i><span>TARGET</span><i></i><span>FIELD</span><i></i><span>GUIDE</span></div>
+          <div class="pipeline-lock" aria-hidden="true"><i></i><b>PIPELINE READY</b><small>CASE / BS-2026-014</small></div>
+        </div>
+        <div class="dual-pipeline reveal">
+          <div class="lane lane-clinical"><header><small>CLINICAL WORKFLOW</small><b>医生看到的 6 步</b></header><div class="lane-flow"><article><i>01</i><b>筛查</b><small>人群 · 基线</small></article><article><i>02</i><b>建图</b><small>导入 · QC</small></article><article><i>03</i><b>决策</b><small>靶点 · 参数</small></article><article><i>04</i><b>复核</b><small>仿真 · 风险</small></article><article><i>05</i><b>执行</b><small>配准 · 导航</small></article><article><i>06</i><b>随访</b><small>量表 · 迭代</small></article></div></div>
+          <div class="lane lane-engine"><header><small>COMPUTE PIPELINE</small><b>系统运行的 8 层</b></header><div class="lane-flow lane-eight"><article><i>01</i><b>DICOM / BIDS</b><small>去标识</small></article><article><i>02</i><b>PREPROCESS</b><small>质控</small></article><article><i>03</i><b>REGISTER</b><small>空间统一</small></article><article><i>04</i><b>CONNECTOME</b><small>结构 + 功能</small></article><article><i>05</i><b>EVIDENCE</b><small>环路融合</small></article><article><i>06</i><b>SIMULATE</b><small>场模型</small></article><article><i>07</i><b>TRACK</b><small>设备位姿</small></article><article><i>08</i><b>LEARN</b><small>结果回流</small></article></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="how section" id="how" aria-labelledby="howTitle">
+      <div class="container">
+        <div class="how-head reveal"><span class="section-index">06 / HOW TO APPLY</span><h2 id="howTitle">接入。运行。进化。</h2><p>从单台工作站开始，逐步连接科室、设备与多中心网络。</p></div>
+        <div class="how-grid">
+          <article class="how-card reveal"><div class="how-media"><img src="./assets/brainsteer-clinical-team.webp" alt="临床团队查看 BrainSteer 个体脑网络"></div><div class="how-copy"><span>01 · DEPLOY</span><h3>接入数据与设备</h3><p>PACS / DICOM · BIDS · TMS / DBS / tFUS · API</p></div></article>
+          <article class="how-card reveal"><div class="how-media"><img src="./assets/brainsteer-pipeline.webp" alt="BrainSteer 连接组、靶点和刺激场工作流"></div><div class="how-copy"><span>02 · RUN</span><h3>创建病例，选择 Pipeline</h3><p>QC → 网络 → 靶点 → 仿真 → 导航</p></div></article>
+          <article class="how-card reveal"><div class="how-media"><img src="./assets/brainsteer-impact.webp" alt="临床团队复核疗效趋势与个体脑网络"></div><div class="how-copy"><span>03 · LEARN</span><h3>复盘疗效，更新策略</h3><p>随访 → 剂量映射 → 机制分析 → 下一方案</p></div></article>
+        </div>
+        <div class="application-strip reveal"><span>START SMALL</span><b>科研队列</b><i>→</i><b>临床试点</b><i>→</i><b>科室工作站</b><i>→</i><b>多设备平台</b><i>→</i><b>多中心网络</b></div>
+      </div>
+    </section>
+
+    <section class="media-wall" aria-label="BrainSteer 视觉能力展示">
+      <figure class="media-tile tile-wide reveal"><img src="./assets/brainsteer-pipeline.webp" alt="从 MRI、连接组到神经调控设备的可视化管线"><figcaption><span>01</span><b>MAP THE NETWORK</b></figcaption></figure>
+      <figure class="media-tile reveal"><img src="./assets/brainsteer-hero.webp" alt="个体脑连接组与神经纤维束可视化"><figcaption><span>02</span><b>MODEL THE CIRCUIT</b></figcaption></figure>
+      <figure class="media-tile reveal"><img src="./assets/brainsteer-clinical.webp" alt="临床神经调控设备空间导航场景"><figcaption><span>03</span><b>GUIDE THE DEVICE</b></figcaption></figure>
+      <figure class="media-tile tile-wide reveal"><img src="./assets/brainsteer-impact.webp" alt="多学科团队复核靶点与疗效趋势"><figcaption><span>04</span><b>LEARN FROM OUTCOME</b></figcaption></figure>
     </section>
 
     <section class="scenarios section" id="scenarios" aria-labelledby="scenariosTitle">
       <div class="container">
-        <div class="section-head light-head reveal"><div><span class="section-index">06 / CLINICAL & RESEARCH SCENARIOS</span><h2 id="scenariosTitle">一套脑网络底座，适配多种调控范式。</h2></div><p>同一套核心数据和空间基础，根据疾病环路、设备约束与临床目标生成不同工作流。</p></div>
+        <div class="section-head light-head reveal"><div><span class="section-index">07 / CLINICAL & RESEARCH SCENARIOS</span><h2 id="scenariosTitle">一个网络底座。五种调控范式。</h2></div><p>同一病例空间，按疾病、环路与设备切换工作流。</p></div>
         <div class="scenario-shell reveal"><div class="scenario-nav" role="tablist" aria-label="应用场景选择"><button type="button" role="tab" aria-selected="true" data-scenario="tms"><span>TMS</span><small>抑郁与精神疾病</small></button><button type="button" role="tab" aria-selected="false" data-scenario="dbs"><span>DBS</span><small>运动障碍</small></button><button type="button" role="tab" aria-selected="false" data-scenario="tfus"><span>tFUS</span><small>深部无创调控</small></button><button type="button" role="tab" aria-selected="false" data-scenario="tes"><span>tES / TI</span><small>电刺激研究</small></button><button type="button" role="tab" aria-selected="false" data-scenario="bci"><span>BCI</span><small>脑状态闭环</small></button></div><div class="scenario-stage"><div class="scenario-visual" aria-hidden="true"><img src="./assets/brainsteer-clinical.webp" alt=""><div class="scenario-overlay"></div><div class="tracking-box"><i></i><span>TARGET LOCK<br><b>1.7 mm</b></span></div><div class="scenario-wave"><span></span><span></span><span></span></div></div><div class="scenario-copy"><span id="scenarioKicker">NON-INVASIVE STIMULATION</span><h3 id="scenarioTitle">难治性抑郁的个体化 TMS 靶点导航</h3><p id="scenarioDescription">在个体皮层形态上定位左侧前额叶候选靶点，结合 DLPFC–sgACC 功能关系、白质通路与电场覆盖，形成可解释的刺激计划。</p><div class="scenario-meta"><div><small>输入</small><b id="scenarioInput">T1w · dMRI · fMRI · 量表</b></div><div><small>关键决策</small><b id="scenarioDecision">靶点 · 线圈方向 · 强度</b></div><div><small>输出</small><b id="scenarioOutput">导航计划 · 疗效评估</b></div></div><div class="disease-tags" id="scenarioTags"><span>难治性抑郁</span><span>强迫症</span><span>成瘾</span></div></div></div></div>
       </div>
     </section>
 
     <section class="film" id="film" aria-labelledby="filmTitle">
-      <video id="productFilm" autoplay muted loop playsinline preload="metadata" poster="./assets/brainsteer-clinical-team.webp" aria-label="BrainSteer 产品概念场景短片"><source src="./assets/brainsteer-film.mp4" type="video/mp4"></video><div class="film-shade" aria-hidden="true"></div>
-      <div class="container film-content"><div class="film-copy reveal"><span class="section-index">07 / PRODUCT FILM</span><h2 id="filmTitle">从一幅脑影像，<br>到一次可解释的干预。</h2><p>看见个体网络，确认环路靶点，模拟刺激覆盖，实时引导执行，并用结果持续学习。</p></div><button class="film-control" id="filmControl" type="button" aria-label="暂停产品概念片"><span aria-hidden="true">Ⅱ</span><b>PAUSE FILM</b></button><div class="film-timeline" aria-hidden="true"><span><i>01</i>IMAGE</span><em></em><span><i>02</i>CONNECTOME</span><em></em><span><i>03</i>TARGET</span><em></em><span><i>04</i>NAVIGATE</span></div></div>
+      <video id="productFilm" autoplay muted loop playsinline preload="metadata" poster="./assets/brainsteer-pipeline.webp" aria-label="BrainSteer 产品概念场景短片"><source src="./assets/brainsteer-film-v2.mp4" type="video/mp4"></video><div class="film-shade" aria-hidden="true"></div>
+      <div class="container film-content"><div class="film-copy reveal"><span class="section-index">08 / PRODUCT FILM</span><h2 id="filmTitle">一幅脑影像。<br>一次可解释的干预。</h2><p>IMAGE → NETWORK → TARGET → FIELD → GUIDE → LEARN</p></div><button class="film-control" id="filmControl" type="button" aria-label="暂停产品概念片"><span aria-hidden="true">Ⅱ</span><b>PAUSE FILM</b></button><div class="film-timeline" aria-hidden="true"><span><i>01</i>IMAGE</span><em></em><span><i>02</i>CONNECTOME</span><em></em><span><i>03</i>TARGET</span><em></em><span><i>04</i>NAVIGATE</span></div></div>
     </section>
 
     <section class="advantages section" aria-labelledby="advantagesTitle">
       <div class="container">
-        <div class="section-head reveal"><div><span class="section-index">08 / TECHNOLOGY ADVANTAGES</span><h2 id="advantagesTitle">不止“看得见”，更要能决策、能执行、能学习。</h2></div><p>BrainSteer 的差异不在单一算法，而在脑网络计算、空间导航与临床闭环的系统级整合。</p></div>
+        <div class="section-head reveal"><div><span class="section-index">09 / TECHNOLOGY ADVANTAGES</span><h2 id="advantagesTitle">看见。决策。执行。学习。</h2></div><p>系统级整合，而非单点工具。</p></div>
         <div class="architecture reveal" aria-label="BrainSteer 技术架构"><div class="arch-core"><span>BRAINSTEER CORE</span><b>脑网络数字孪生</b><small>PATIENT-SPECIFIC CIRCUIT MODEL</small></div><div class="arch-ring ring-one"><span>多模态影像</span><span>循证知识</span><span>临床数据</span></div><div class="arch-ring ring-two"><span>靶点推荐</span><span>场仿真</span><span>空间导航</span><span>疗效学习</span></div></div>
         <div class="advantage-grid"><article class="reveal"><span>01</span><h3>环路优先，而非坐标优先</h3><p>从“某个点在哪里”升级为“该点连接什么、调节什么、证据是什么”。</p></article><article class="reveal"><span>02</span><h3>结构—功能—刺激场联合</h3><p>在一个个体空间中融合连接组、疾病网络与物理刺激覆盖。</p></article><article class="reveal"><span>03</span><h3>多设备中立架构</h3><p>面向 TMS、DBS、tFUS、tES/TI 与 BCI，不被单一硬件锁定。</p></article><article class="reveal"><span>04</span><h3>证据链与质量链并行</h3><p>对数据、模型、推荐、执行和结果逐层留痕，支持复核与复现。</p></article><article class="reveal"><span>05</span><h3>边缘计算与私有部署</h3><p>适配医院数据边界、科研算力与本地硬件，支持渐进式落地。</p></article><article class="reveal"><span>06</span><h3>开放模块与智能协作</h3><p>成熟开源生态与自研核心模块协同，通过 API 快速接入现有系统。</p></article></div>
       </div>
     </section>
 
-    <section class="clinical-value section" aria-labelledby="clinicalTitle">
-      <div class="container value-grid"><div class="value-intro reveal"><span class="section-index">09 / CLINICAL VALUE</span><h2 id="clinicalTitle">让精准，不只发生在屏幕上。</h2><p>BrainSteer 将科学证据转化为临床可执行、工程可集成、管理可衡量的共同价值。</p><div class="value-statement"><span>CORE PROMISE</span><b>更一致的流程<br>更透明的决策<br>更可积累的数据资产</b></div></div><div class="stakeholder-grid"><article class="reveal"><small>FOR CLINICIANS</small><h3>面向医生</h3><ul><li>减少跨软件切换与重复操作</li><li>同一视图复核靶点、通路与刺激覆盖</li><li>形成可沟通、可追踪的病例报告</li></ul></article><article class="reveal"><small>FOR PATIENT JOURNEY</small><h3>面向诊疗过程</h3><ul><li>用个体数据支持差异化方案</li><li>连接基线、治疗与随访信息</li><li>为疗效波动提供网络层解释线索</li></ul></article><article class="reveal"><small>FOR ORGANIZATIONS</small><h3>面向机构</h3><ul><li>沉淀标准化神经调控病例资产</li><li>支持多中心一致性与质量管理</li><li>形成科研、临床与转化协同平台</li></ul></article><article class="reveal"><small>FOR INDUSTRY</small><h3>面向产业</h3><ul><li>为设备补齐影像和智能决策层</li><li>缩短新场景算法验证与集成周期</li><li>拓展软件订阅、模块授权与联合方案</li></ul></article></div></div>
+    <section class="comparison section" id="compare" aria-labelledby="compareTitle">
+      <div class="container">
+        <div class="compare-head reveal"><span class="section-index">BENCHMARK / LANDSCAPE</span><h2 id="compareTitle">从“影像工具”，走向“神经调控操作系统”。</h2><div class="compare-legend"><span><i class="full"></i>核心强调</span><span><i class="half"></i>涉及 / 部分</span><span><i class="empty"></i>非官网重点</span></div></div>
+        <div class="benchmark-theater reveal">
+          <div class="radar-shell"><svg id="radarChart" viewBox="0 0 620 520" role="img" aria-label="BrainSteer 与所选同类产品的六维公开定位雷达图"><g id="radarGrid"></g><g id="radarLabels"></g><polygon id="radarBrainsteer" class="radar-shape brainsteer-shape" points=""></polygon><polygon id="radarCompetitor" class="radar-shape competitor-shape" points=""></polygon><g id="radarDots"></g></svg><div class="radar-key"><span><i></i>BrainSteer</span><span><i></i><b id="radarCompetitorName">Brainlab</b></span></div></div>
+          <div class="benchmark-control"><small>SELECT COMPARATOR</small><div class="product-picker" role="tablist" aria-label="选择雷达图对比产品"><button type="button" role="tab" aria-selected="true" data-radar-product="brainlab">Brainlab</button><button type="button" role="tab" aria-selected="false" data-radar-product="localite">Localite</button><button type="button" role="tab" aria-selected="false" data-radar-product="nexstim">Nexstim</button><button type="button" role="tab" aria-selected="false" data-radar-product="zeta">Zeta TMS</button><button type="button" role="tab" aria-selected="false" data-radar-product="quicktome">Quicktome</button></div><div class="benchmark-position"><span id="benchmarkType">神经外科导航平台</span><h3 id="benchmarkTitle">BrainSteer 的差异：从术中导航扩展到神经调控治疗闭环。</h3><div id="benchmarkTags"><i>多设备调控</i><i>环路靶点</i><i>闭环随访</i></div></div><p>图中分值仅把各品牌官网公开强调程度映射为 1–5 级，用于理解产品定位，不代表性能测试、认证状态或临床优劣。</p></div>
+        </div>
+        <div class="matrix-wrap reveal" tabindex="0" aria-label="横向滚动查看产品能力对比">
+          <table class="compare-matrix">
+            <thead><tr><th>公开定位 / 能力方向</th><th class="brainsteer-col">BrainSteer</th><th><a href="https://www.brainlab.com/" target="_blank" rel="noreferrer">Brainlab</a></th><th><a href="https://www.o8t.com/" target="_blank" rel="noreferrer">Quicktome</a></th><th><a href="https://advantis.io/" target="_blank" rel="noreferrer">Advantis</a></th><th><a href="https://synaptivemedical.com/" target="_blank" rel="noreferrer">Synaptive</a></th><th><a href="https://www.medivis.com/" target="_blank" rel="noreferrer">Medivis</a></th><th><a href="https://imeka.ca/" target="_blank" rel="noreferrer">ImeKa</a></th><th><a href="https://www.xijiabrainmap.com/" target="_blank" rel="noreferrer">Xijia</a></th><th><a href="https://www.qmenta.com/" target="_blank" rel="noreferrer">QMENTA</a></th></tr></thead>
+            <tbody>
+              <tr><th>核心场景</th><td class="brainsteer-col">神经调控闭环</td><td>手术 / 放疗</td><td>连接组手术</td><td>高级 MRI</td><td>手术套件</td><td>AR 手术导航</td><td>白质影像</td><td>脑图谱 / 导航</td><td>影像研究 / 试验</td></tr>
+              <tr><th>个体连接组</th><td class="brainsteer-col"><span class="dot full">●</span></td><td><span class="dot half">◐</span></td><td><span class="dot full">●</span></td><td><span class="dot half">◐</span></td><td><span class="dot full">●</span></td><td><span class="dot empty">○</span></td><td><span class="dot full">●</span></td><td><span class="dot full">●</span></td><td><span class="dot half">◐</span></td></tr>
+              <tr><th>环路靶点决策</th><td class="brainsteer-col"><span class="dot full">●</span></td><td><span class="dot half">◐</span></td><td><span class="dot half">◐</span></td><td><span class="dot empty">○</span></td><td><span class="dot half">◐</span></td><td><span class="dot empty">○</span></td><td><span class="dot empty">○</span></td><td><span class="dot half">◐</span></td><td><span class="dot empty">○</span></td></tr>
+              <tr><th>刺激场 / 声场仿真</th><td class="brainsteer-col"><span class="dot full">●</span></td><td><span class="dot half">◐</span></td><td><span class="dot empty">○</span></td><td><span class="dot empty">○</span></td><td><span class="dot half">◐</span></td><td><span class="dot empty">○</span></td><td><span class="dot empty">○</span></td><td><span class="dot half">◐</span></td><td><span class="dot empty">○</span></td></tr>
+              <tr><th>实时空间导航</th><td class="brainsteer-col"><span class="dot full">●</span></td><td><span class="dot full">●</span></td><td><span class="dot half">◐</span></td><td><span class="dot empty">○</span></td><td><span class="dot full">●</span></td><td><span class="dot full">●</span></td><td><span class="dot empty">○</span></td><td><span class="dot half">◐</span></td><td><span class="dot empty">○</span></td></tr>
+              <tr><th>多调控设备 TMS / DBS / tFUS / tES / BCI</th><td class="brainsteer-col"><span class="dot full">●</span></td><td><span class="dot half">◐</span></td><td><span class="dot empty">○</span></td><td><span class="dot empty">○</span></td><td><span class="dot half">◐</span></td><td><span class="dot empty">○</span></td><td><span class="dot empty">○</span></td><td><span class="dot half">◐</span></td><td><span class="dot empty">○</span></td></tr>
+              <tr><th>治疗—随访—再决策闭环</th><td class="brainsteer-col"><span class="dot full">●</span></td><td><span class="dot half">◐</span></td><td><span class="dot half">◐</span></td><td><span class="dot half">◐</span></td><td><span class="dot half">◐</span></td><td><span class="dot empty">○</span></td><td><span class="dot half">◐</span></td><td><span class="dot half">◐</span></td><td><span class="dot half">◐</span></td></tr>
+              <tr><th>科研 × 临床 × 设备开放集成</th><td class="brainsteer-col"><span class="dot full">●</span></td><td><span class="dot half">◐</span></td><td><span class="dot half">◐</span></td><td><span class="dot half">◐</span></td><td><span class="dot half">◐</span></td><td><span class="dot half">◐</span></td><td><span class="dot half">◐</span></td><td><span class="dot half">◐</span></td><td><span class="dot full">●</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="compare-note reveal">基于 2026 年 9 月各品牌官网公开定位的方向性比较；“非官网重点”不代表绝对缺失。功能、地区版本与注册范围可能变化。BrainSteer 列为产品设计方向，实际能力以验证及注册版本为准。</p>
+      </div>
+    </section>
+
+    <section class="clinical-value section" id="impact" aria-labelledby="clinicalTitle">
+      <div class="impact-backdrop" aria-hidden="true"><img src="./assets/brainsteer-impact.webp" alt=""></div>
+      <div class="container impact-shell">
+        <div class="impact-hero reveal"><span class="section-index">VALUE / CLINICAL IMPACT</span><h2 id="clinicalTitle">把“更精准”，变成可测量的临床改进。</h2><p>计划效率 · 决策一致性 · 导航误差 · 靶点参与度 · 临床结局 · 安全性</p></div>
+        <div class="impact-shifts">
+          <article class="reveal"><strong>↓</strong><div><small>EFFICIENCY</small><b>规划时间</b><span>减少跨软件与手工步骤</span></div></article>
+          <article class="reveal"><strong>↑</strong><div><small>CONSISTENCY</small><b>决策一致性</b><span>环路证据 + 标准流程</span></div></article>
+          <article class="reveal"><strong>↓</strong><div><small>ACCURACY</small><b>导航偏差</b><span>位姿 + 靶点 + 剂量反馈</span></div></article>
+          <article class="reveal"><strong>↑</strong><div><small>LEARNING</small><b>随访可解释性</b><span>参数—网络—结局关联</span></div></article>
+        </div>
+        <div class="impact-before-after reveal"><div><small>BEFORE</small><b>模板坐标</b><span>多软件切换</span><span>静态计划</span><span>分散随访</span></div><i>→</i><div class="after"><small>WITH BRAINSTEER</small><b>个体环路</b><span>一体化病例</span><span>实时导航</span><span>闭环学习</span></div></div>
+        <div class="validation-board reveal"><div class="validation-head"><span>PROSPECTIVE VALIDATION</span><h3>临床试点如何证明价值</h3><p>不先写百分比，先定义终点。</p></div><div class="validation-metrics"><article><small>01</small><b>效率</b><span>分钟 / 操作步数</span></article><article><small>02</small><b>精度</b><span>配准与靶点误差 mm</span></article><article><small>03</small><b>一致性</b><span>ICC / Kappa</span></article><article><small>04</small><b>靶点参与</b><span>场强 / 网络覆盖</span></article><article><small>05</small><b>临床结局</b><span>量表 / 运动评分</span></article><article><small>06</small><b>安全性</b><span>不良事件 / 脱靶暴露</span></article></div></div>
+        <div class="evidence-strip reveal"><span>FIELD EVIDENCE</span><p>个体连接引导与电场建模已在神经调控研究中显示潜在临床价值；它们构成 BrainSteer 的验证依据，而非 BrainSteer 已证实疗效。</p><div><a href="https://doi.org/10.1176/appi.ajp.2021.20101429" target="_blank" rel="noreferrer">连接引导 TMS RCT ↗</a><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10427506/" target="_blank" rel="noreferrer">电场—疗效研究 ↗</a></div></div>
+        <p class="impact-disclaimer reveal">以上为预期改进方向与建议验证框架，不构成临床疗效承诺。真实效果需通过前瞻性、多中心研究，并以适用法规与注册范围为准。</p>
+      </div>
+    </section>
+
+    <section class="blueprint-gallery section" id="blueprints" aria-labelledby="blueprintTitle">
+      <div class="container blueprint-head reveal"><span class="section-index">VISUAL KNOWLEDGE BASE / 17 BLUEPRINTS</span><h2 id="blueprintTitle">把复杂技术，变成一眼能看懂的系统蓝图。</h2><p>点击任意画面进入沉浸式查看。带有疗效、市场或周期数字的画面均为概念材料，需以后续研究与正式来源核验。</p></div>
+      <div class="blueprint-grid">
+        <button class="blueprint-card card-wide reveal" type="button" data-blueprint="0"><img loading="lazy" src="./assets/blueprints/01-why-brainsteer.webp" alt="为什么神经调控需要 BrainSteer"><span><small>WHY</small><b>为什么需要 BrainSteer</b></span></button>
+        <button class="blueprint-card reveal" type="button" data-blueprint="1"><img loading="lazy" src="./assets/blueprints/15-clinical-painpoints.webp" alt="调哪里、为什么调、如何调准的临床痛点"><span><small>PROBLEM</small><b>三问与四大痛点</b></span></button>
+        <button class="blueprint-card reveal" type="button" data-blueprint="2"><img loading="lazy" src="./assets/blueprints/12-platform-base.webp" alt="BrainSteer 神经调控治疗前中后的软件底座"><span><small>PLATFORM</small><b>完整软件底座</b></span></button>
+        <button class="blueprint-card card-tall reveal" type="button" data-blueprint="3"><img loading="lazy" src="./assets/blueprints/13-target-engine.webp" alt="BrainSteer 新靶点发现与治疗决策智能引擎"><span><small>DISCOVERY</small><b>新靶点发现引擎</b></span></button>
+        <button class="blueprint-card card-wide reveal" type="button" data-blueprint="4"><img loading="lazy" src="./assets/blueprints/09-multi-agent.webp" alt="BrainSteer 多智能体协同靶点发现技术体系"><span><small>AGENTS</small><b>多智能体协同</b></span></button>
+        <button class="blueprint-card reveal" type="button" data-blueprint="5"><img loading="lazy" src="./assets/blueprints/10-target-discovery-workflow.webp" alt="BrainSteer 如何发现新靶点"><span><small>PIPELINE</small><b>如何发现新靶点</b></span></button>
+        <button class="blueprint-card reveal" type="button" data-blueprint="6"><img loading="lazy" src="./assets/blueprints/06-simulation-engine-dark.webp" alt="BrainSteer 深色刺激仿真引擎蓝图"><span><small>SIMULATION</small><b>刺激仿真引擎</b></span></button>
+        <button class="blueprint-card card-wide reveal" type="button" data-blueprint="7"><img loading="lazy" src="./assets/blueprints/07-simulation-engine-light.webp" alt="BrainSteer 个体化神经调控数字沙盘"><span><small>DIGITAL SANDBOX</small><b>个体化仿真沙盘</b></span></button>
+        <button class="blueprint-card reveal" type="button" data-blueprint="8"><img loading="lazy" src="./assets/blueprints/17-closed-loop.webp" alt="BrainSteer 闭环监测、实时仿真与沙盘模拟"><span><small>CLOSED LOOP</small><b>实时闭环仿真</b></span></button>
+        <button class="blueprint-card card-wide reveal" type="button" data-blueprint="9"><img loading="lazy" src="./assets/blueprints/14-precision-navigation.webp" alt="BrainSteer 基于连接组的精准定位与实时导航"><span><small>NAVIGATION</small><b>精准定位与导航</b></span></button>
+        <button class="blueprint-card reveal" type="button" data-blueprint="10"><img loading="lazy" src="./assets/blueprints/11-treatment-chain.webp" alt="BrainSteer 从脑影像到疗效随访的完整治疗链"><span><small>WORKFLOW</small><b>完整治疗链</b></span></button>
+        <button class="blueprint-card reveal" type="button" data-blueprint="11"><img loading="lazy" src="./assets/blueprints/16-system-moat.webp" alt="BrainSteer 影像理解、环路决策与闭环优化系统壁垒"><span><small>MOAT</small><b>五层技术护城河</b></span></button>
+        <button class="blueprint-card card-wide reveal" type="button" data-blueprint="12"><img loading="lazy" src="./assets/blueprints/04-compare-dark.webp" alt="BrainSteer 与 Brainlab、Localite、Nexstim、Zeta TMS 多维对比"><span><small>BENCHMARK</small><b>同类产品对比 · 深色版</b></span></button>
+        <button class="blueprint-card reveal" type="button" data-blueprint="13"><img loading="lazy" src="./assets/blueprints/08-compare-light.webp" alt="BrainSteer 与同类型产品多维对比白色版"><span><small>BENCHMARK</small><b>同类产品对比 · 白色版</b></span></button>
+        <button class="blueprint-card concept-card reveal" type="button" data-blueprint="14"><img loading="lazy" src="./assets/blueprints/02-precision-outcomes.webp" alt="精准定位、智能调控与预期临床价值概念图"><span><small>CONCEPT · 待验证</small><b>精准定位与预期价值</b></span></button>
+        <button class="blueprint-card concept-card reveal" type="button" data-blueprint="15"><img loading="lazy" src="./assets/blueprints/03-outcomes-concept.webp" alt="BrainSteer 疗效提升概念画面"><span><small>CONCEPT · 待验证</small><b>临床提升假设</b></span></button>
+        <button class="blueprint-card concept-card card-wide reveal" type="button" data-blueprint="16"><img loading="lazy" src="./assets/blueprints/05-market-opportunity.webp" alt="全球精神健康与神经调控市场机会概念材料"><span><small>MARKET · 待核验</small><b>全球需求与市场机会</b></span></button>
+      </div>
+      <div class="container blueprint-docs reveal"><a href="./assets/docs/core-modules.pdf" target="_blank"><span>01</span><b>8 个核心模块</b><small>PDF ↗</small></a><a href="./assets/docs/simulation-engine.pdf" target="_blank"><span>02</span><b>刺激仿真引擎</b><small>PDF ↗</small></a><a href="./assets/docs/target-discovery-engine.pdf" target="_blank"><span>03</span><b>靶点发现与决策引擎</b><small>PDF ↗</small></a></div>
+      <dialog class="blueprint-dialog" id="blueprintDialog" aria-labelledby="blueprintDialogTitle"><button class="dialog-close" id="blueprintClose" type="button" aria-label="关闭技术蓝图">×</button><button class="dialog-arrow prev" id="blueprintPrev" type="button" aria-label="上一张">←</button><figure><img id="blueprintDialogImage" src="./assets/blueprints/01-why-brainsteer.webp" alt=""><figcaption><small>VISUAL BLUEPRINT</small><b id="blueprintDialogTitle">为什么需要 BrainSteer</b><p>概念材料用于呈现产品方向；其中疗效、市场和周期数字不构成已验证事实或临床承诺。</p></figcaption></figure><button class="dialog-arrow next" id="blueprintNext" type="button" aria-label="下一张">→</button></dialog>
     </section>
 
     <section class="innovation section" id="innovation" aria-labelledby="innovationTitle">

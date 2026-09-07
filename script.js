@@ -188,8 +188,325 @@ if (productFilm && 'IntersectionObserver' in window) {
 }
 
 if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-  productFilm?.pause();
+  document.querySelectorAll('video[autoplay]').forEach((video) => video.pause());
   updateFilmControl();
+}
+
+const ambientVideos = document.querySelectorAll('video:not(#productFilm)');
+if (ambientVideos.length && 'IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  const ambientObserver = new IntersectionObserver((entries) => {
+    entries.forEach(async (entry) => {
+      if (entry.isIntersecting) {
+        try { await entry.target.play(); } catch (_) { /* Poster remains visible if autoplay is unavailable. */ }
+      } else {
+        entry.target.pause();
+      }
+    });
+  }, { threshold: .08 });
+  ambientVideos.forEach((video) => ambientObserver.observe(video));
+}
+
+const coreModules = [
+  { kicker: 'TARGET ENGINE', title: '靶点引擎', tagline: '为 TMS、tFUS、tES、DBS 生成患者个体化候选靶点。', flow: 'MRI → 个体结构 → 图谱映射 → 候选靶点 → 可达性约束', stack: ['ANTs', 'SynthSeg', 'Nilearn', 'neuromaps', 'vtk.js'], owned: '候选靶点生成 · Target Score · 置信度与解释' },
+  { kicker: 'CONNECTOME-GUIDED TARGETING', title: '连接组引导靶向', tagline: '把候选脑区升级为与症状和疾病环路相连的个体化网络靶点。', flow: 'dMRI / fMRI → 纤维束与功能网络 → 环路匹配 → 可达靶区', stack: ['MRtrix3', 'TractSeg', 'Nilearn', 'NetworkX'], owned: '环路匹配 · 路径覆盖 · 疾病网络一致性' },
+  { kicker: 'REVERSE TARGET DISCOVERY', title: '反向靶点发现引擎', tagline: '从证据、影像表型和真实世界结局反推新的可干预环路。', flow: '文献 / 试验 / 病例 → 知识图谱 → 多智能体 → 候选假设', stack: ['LangGraph', 'LLM', 'Europe PMC', 'scispaCy', 'pgvector', 'DoWhy'], owned: '证据抽取 · 矛盾识别 · 因果假设 · 靶点卡' },
+  { kicker: 'MULTIMODAL TARGET RANKING', title: '多模态靶点排序', tagline: '以六维评分和不确定性量化，对候选靶点进行可解释排序。', flow: '生物学 + 影像 + 循证 + 可达性 + 安全 + 转化 → Target Score', stack: ['Pandas', 'scikit-learn', 'Optuna', 'SHAP', 'PyMC'], owned: '六维评分 · A–D 分级 · 置信区间 · 可解释排名' },
+  { kicker: 'COORDINATE & NAVIGATION', title: '坐标与实时导航', tagline: '统一影像、靶点、设备和患者空间，持续监测位姿与偏差。', flow: '标志点 / 表面 → 配准 → 实时追踪 → 靶点锁定 → 误差记录', stack: ['OpenIGTLink', 'PlusLib', 'SciKit-Surgery', 'OpenCV', 'Open3D', 'VTK'], owned: '坐标编排 · 设备适配 · 导航质控 · 误差闭环' },
+  { kicker: 'TREATMENT PLANNING', title: '治疗计划与场仿真', tagline: '在治疗前比较设备、角度、强度、入射路径与网络覆盖。', flow: '个体头模 → 场计算 → 多参数搜索 → 风险约束 → 方案复核', stack: ['SimNIBS', 'BabelBrain', 'SciPy', 'Optuna'], owned: '跨设备方案空间 · 网络剂量 · 反事实仿真' },
+  { kicker: 'CLOSED-LOOP CONTROLLER', title: '实时闭环控制器', tagline: '融合脑状态、运动与生理反馈，在安全边界内更新刺激策略。', flow: 'EEG / MEP / HRV → 状态识别 → 规则与模型 → 参数建议 → 留痕', stack: ['BrainFlow', 'LSL', 'MNE', 'SciPy', 'ONNX Runtime'], owned: '状态估计 · 安全约束 · 在线策略 · 结果回流' },
+  { kicker: 'CLINICAL WORKFLOW & UI', title: '临床工作流与界面', tagline: '把影像、证据、仿真、导航、随访组织为同一个病例空间。', flow: '病例 → QC → 决策 → 复核 → 执行 → 报告 → 随访', stack: ['React', 'Cornerstone3D', 'OHIF', 'vtk.js', 'FastAPI', 'PostgreSQL', 'MinIO'], owned: '病例工作区 · 权限审计 · 版本追溯 · 多中心协作' }
+];
+
+const moduleFields = {
+  index: document.querySelector('#moduleIndex'), kicker: document.querySelector('#moduleKicker'),
+  title: document.querySelector('#moduleTitle'), tagline: document.querySelector('#moduleTagline'),
+  flow: document.querySelector('#moduleFlow'), owned: document.querySelector('#moduleOwned')
+};
+const moduleStack = document.querySelector('#moduleStack');
+
+document.querySelectorAll('[data-module]').forEach((button) => {
+  button.addEventListener('click', () => {
+    const index = Number(button.dataset.module);
+    const next = coreModules[index];
+    document.querySelectorAll('[data-module]').forEach((tab) => tab.setAttribute('aria-selected', String(tab === button)));
+    if (moduleFields.index) moduleFields.index.textContent = `MODULE ${String(index + 1).padStart(2, '0')}`;
+    ['kicker', 'title', 'tagline', 'flow', 'owned'].forEach((key) => { if (moduleFields[key]) moduleFields[key].textContent = next[key]; });
+    if (moduleStack) {
+      moduleStack.replaceChildren(...next.stack.map((item) => {
+        const chip = document.createElement('i');
+        chip.textContent = item;
+        return chip;
+      }));
+    }
+    animateSwap([...Object.values(moduleFields), moduleStack]);
+  });
+});
+
+addTabKeyboardNavigation('.module-switch');
+
+document.querySelectorAll('[data-engine-tab]').forEach((button) => {
+  button.addEventListener('click', () => {
+    const target = button.dataset.engineTab;
+    document.querySelectorAll('[data-engine-tab]').forEach((tab) => tab.setAttribute('aria-selected', String(tab === button)));
+    document.querySelectorAll('[data-engine-panel]').forEach((panel) => { panel.hidden = panel.dataset.enginePanel !== target; });
+  });
+});
+
+addTabKeyboardNavigation('.engine-tabs');
+
+const agents = [
+  ['文献侦察智能体', '持续扫描论文、指南、临床试验与会议摘要', '输出：新靶点线索与证据增量'],
+  ['证据分级智能体', '依据研究设计、样本量、一致性与偏倚风险分层', '输出：E0–E5 证据等级'],
+  ['环路映射智能体', '把候选靶点映射到功能网络与白质通路', '输出：环路坐标与网络覆盖'],
+  ['影像表型智能体', '分析 MRI、dMRI、fMRI 与 EEG 的个体异常模式', '输出：患者特异异常环路'],
+  ['靶点生成智能体', '融合症状、机制和可达性生成候选靶点与策略', '输出：候选靶点集合与靶点卡'],
+  ['刺激仿真智能体', '比较刺激场、网络覆盖、反事实参数与风险边界', '输出：仿真排序与备选计划'],
+  ['临床策略智能体', '把靶点、设备与患者条件转译为可执行疗程', '输出：待医生复核的治疗策略'],
+  ['安全合规智能体', '识别禁忌证、不良事件、适应证与注册边界', '输出：风险提示与使用边界'],
+  ['试验设计智能体', '定义验证终点、样本量、分层方法和统计方案', '输出：前瞻性验证方案草案'],
+  ['真实世界学习智能体', '从参数、过程、随访与结局中持续校准评分', '输出：模型更新与下一疗程建议']
+];
+
+const agentRole = document.querySelector('#agentRole');
+const agentMission = document.querySelector('#agentMission');
+const agentOutput = document.querySelector('#agentOutput');
+document.querySelectorAll('[data-agent]').forEach((button) => {
+  button.addEventListener('click', () => {
+    const next = agents[Number(button.dataset.agent)];
+    document.querySelectorAll('[data-agent]').forEach((item) => item.classList.toggle('active', item === button));
+    if (agentRole) agentRole.textContent = next[0];
+    if (agentMission) agentMission.textContent = next[1];
+    if (agentOutput) agentOutput.textContent = next[2];
+    animateSwap([agentRole, agentMission, agentOutput]);
+  });
+});
+document.querySelector('[data-agent="0"]')?.classList.add('active');
+
+const simulation = {
+  offset: document.querySelector('#offsetControl'), angle: document.querySelector('#angleControl'),
+  intensity: document.querySelector('#intensityControl'), state: document.querySelector('#stateControl')
+};
+const simulationValues = {
+  offset: document.querySelector('#offsetValue'), angle: document.querySelector('#angleValue'),
+  intensity: document.querySelector('#intensityValue'), state: document.querySelector('#stateValue')
+};
+const simulationOutputs = {
+  coverage: [document.querySelector('#coverageBar'), document.querySelector('#coverageValue')],
+  offTarget: [document.querySelector('#offTargetBar'), document.querySelector('#offTargetValue')],
+  safety: [document.querySelector('#safetyBar'), document.querySelector('#safetyValue')],
+  uncertainty: [document.querySelector('#uncertaintyBar'), document.querySelector('#uncertaintyValue')]
+};
+const stateNames = ['静息', '任务态', '疲劳'];
+const clamp = (value, min = 0, max = 100) => Math.min(max, Math.max(min, value));
+
+function updateSimulation() {
+  if (!simulation.offset || !simulation.angle || !simulation.intensity || !simulation.state) return;
+  const offset = Number(simulation.offset.value);
+  const angle = Number(simulation.angle.value);
+  const intensity = Number(simulation.intensity.value);
+  const state = Number(simulation.state.value);
+  const coverage = clamp(Math.round(94 - Math.abs(offset) * 3.8 - Math.abs(angle) * .55 - Math.abs(intensity - 100) * .28 - state * 7));
+  const offTarget = clamp(Math.round(14 + Math.abs(offset) * 3.2 + Math.abs(angle) * .35 + Math.max(0, intensity - 100) * .8 + state * 4));
+  const safety = clamp(Math.round(92 - Math.max(0, intensity - 100) * 1.5 - Math.abs(angle) * .25 - state * 5));
+  const uncertainty = clamp(Math.round(12 + state * 17 + Math.abs(offset) * 1.4 + Math.abs(angle) * .25));
+  simulationValues.offset.textContent = `${offset > 0 ? '+' : ''}${offset} mm`;
+  simulationValues.angle.textContent = `${angle > 0 ? '+' : ''}${angle}°`;
+  simulationValues.intensity.textContent = `${intensity}%`;
+  simulationValues.state.textContent = stateNames[state];
+  Object.entries({ coverage, offTarget, safety, uncertainty }).forEach(([key, value]) => {
+    const [bar, label] = simulationOutputs[key];
+    if (bar) bar.style.width = `${value}%`;
+    if (label) label.textContent = value;
+  });
+  const focus = document.querySelector('#fieldFocus');
+  const reticle = document.querySelector('#fieldReticle');
+  const x = 48 + offset * 1.2;
+  const y = 42 + state * 2.2;
+  if (focus) {
+    focus.style.left = `${x}%`;
+    focus.style.top = `${y}%`;
+    focus.style.width = `${clamp(210 + (intensity - 100) * 3, 130, 270)}px`;
+  }
+  if (reticle) {
+    reticle.style.left = `${x}%`;
+    reticle.style.top = `${y}%`;
+    reticle.style.transform = `translate(-50%, -50%) rotate(${angle}deg)`;
+  }
+  const advice = document.querySelector('#simAdvice');
+  if (advice) {
+    if (safety < 68 || offTarget > 54) advice.textContent = '安全余量降低或非目标暴露偏高；建议减小强度并重新搜索角度。';
+    else if (coverage < 70) advice.textContent = '目标覆盖不足；建议回到候选靶点与入射方向进行联合优化。';
+    else if (uncertainty > 48) advice.textContent = '脑状态不确定性较高；建议补充实时信号并进入闭环监测。';
+    else advice.textContent = '目标覆盖充分；当前方案可进入医生复核。';
+  }
+}
+
+Object.values(simulation).forEach((control) => control?.addEventListener('input', updateSimulation));
+document.querySelectorAll('[data-sim-preset]').forEach((button) => {
+  button.addEventListener('click', () => {
+    const preset = button.dataset.simPreset;
+    const values = { offset: [5, 0, 100, 0], angle: [0, 15, 100, 0], intensity: [0, 0, 90, 0], fatigue: [0, 0, 100, 2], reset: [0, 0, 100, 0] }[preset];
+    if (!values) return;
+    [simulation.offset, simulation.angle, simulation.intensity, simulation.state].forEach((control, index) => { if (control) control.value = values[index]; });
+    updateSimulation();
+  });
+});
+updateSimulation();
+
+const radarProducts = {
+  brainlab: { name: 'Brainlab', type: '神经外科导航平台', title: 'BrainSteer 的差异：从术中导航扩展到神经调控治疗闭环。', tags: ['多设备调控', '环路靶点', '闭环随访'], scores: [3.4, 2.4, 5, 2.2, 3.3, 4] },
+  localite: { name: 'Localite', type: 'TMS 神经导航', title: 'BrainSteer 的差异：让定位、环路证据、场仿真与疗效学习贯通。', tags: ['多模态融合', '治疗决策', '真实世界学习'], scores: [2.7, 1.7, 4.6, 2, 2.5, 2.7] },
+  nexstim: { name: 'Nexstim', type: 'nTMS 定位与功能映射', title: 'BrainSteer 的差异：设备中立，并把连接组与多疗程反馈纳入同一系统。', tags: ['设备中立', '连接组靶向', '纵向闭环'], scores: [4, 2, 4.3, 2, 2.7, 2.3] },
+  zeta: { name: 'Zeta TMS', type: 'TMS 导航与机器人定位', title: 'BrainSteer 的差异：从空间自动化扩展到靶点发现和网络剂量。', tags: ['新靶点发现', '反事实仿真', '多设备平台'], scores: [3, 1.7, 4.1, 1.6, 2.3, 2.6] },
+  quicktome: { name: 'Quicktome', type: '连接组手术规划', title: 'BrainSteer 的差异：面向多类神经调控设备，连接治疗前、中、后。', tags: ['刺激仿真', '实时反馈', '疗效报告'], scores: [4.2, 5, 2.4, 2.7, 3.4, 3.3] }
+};
+const radarLabels = ['多模态影像', '环路靶向', '实时导航', '闭环反馈', '疗效报告', '开放集成'];
+const radarCenter = { x: 310, y: 260 };
+const radarRadius = 180;
+const svgNS = 'http://www.w3.org/2000/svg';
+function radarPoint(index, value, radius = radarRadius) {
+  const angle = -Math.PI / 2 + index * (Math.PI * 2 / radarLabels.length);
+  const scale = value / 5;
+  return [radarCenter.x + Math.cos(angle) * radius * scale, radarCenter.y + Math.sin(angle) * radius * scale];
+}
+function radarPoints(values) { return values.map((value, index) => radarPoint(index, value).join(',')).join(' '); }
+
+const radarGrid = document.querySelector('#radarGrid');
+const radarLabelLayer = document.querySelector('#radarLabels');
+if (radarGrid && radarLabelLayer) {
+  for (let level = 1; level <= 5; level += 1) {
+    const polygon = document.createElementNS(svgNS, 'polygon');
+    polygon.setAttribute('points', radarPoints(new Array(radarLabels.length).fill(level)));
+    polygon.setAttribute('class', 'radar-grid-line');
+    radarGrid.append(polygon);
+  }
+  radarLabels.forEach((label, index) => {
+    const edge = radarPoint(index, 5);
+    const labelPoint = radarPoint(index, 5, radarRadius + 43);
+    const axis = document.createElementNS(svgNS, 'line');
+    axis.setAttribute('x1', radarCenter.x); axis.setAttribute('y1', radarCenter.y);
+    axis.setAttribute('x2', edge[0]); axis.setAttribute('y2', edge[1]); axis.setAttribute('class', 'radar-axis');
+    radarGrid.append(axis);
+    const text = document.createElementNS(svgNS, 'text');
+    text.setAttribute('x', labelPoint[0]); text.setAttribute('y', labelPoint[1]); text.setAttribute('class', 'radar-label'); text.textContent = label;
+    radarLabelLayer.append(text);
+  });
+}
+const brainsteerRadar = document.querySelector('#radarBrainsteer');
+const competitorRadar = document.querySelector('#radarCompetitor');
+if (brainsteerRadar) brainsteerRadar.setAttribute('points', radarPoints([5, 5, 5, 5, 5, 5]));
+
+function updateRadar(key) {
+  const product = radarProducts[key];
+  if (!product) return;
+  if (competitorRadar) competitorRadar.setAttribute('points', radarPoints(product.scores));
+  const dots = document.querySelector('#radarDots');
+  if (dots) {
+    dots.replaceChildren();
+    [5, 5, 5, 5, 5, 5].forEach((value, index) => {
+      const point = radarPoint(index, value); const dot = document.createElementNS(svgNS, 'circle');
+      dot.setAttribute('cx', point[0]); dot.setAttribute('cy', point[1]); dot.setAttribute('r', 3); dot.setAttribute('class', 'radar-dot'); dots.append(dot);
+    });
+    product.scores.forEach((value, index) => {
+      const point = radarPoint(index, value); const dot = document.createElementNS(svgNS, 'circle');
+      dot.setAttribute('cx', point[0]); dot.setAttribute('cy', point[1]); dot.setAttribute('r', 3); dot.setAttribute('class', 'radar-dot competitor-dot'); dots.append(dot);
+    });
+  }
+  const name = document.querySelector('#radarCompetitorName');
+  const type = document.querySelector('#benchmarkType');
+  const title = document.querySelector('#benchmarkTitle');
+  const tags = document.querySelector('#benchmarkTags');
+  if (name) name.textContent = product.name;
+  if (type) type.textContent = product.type;
+  if (title) title.textContent = product.title;
+  if (tags) tags.replaceChildren(...product.tags.map((tag) => { const item = document.createElement('i'); item.textContent = tag; return item; }));
+  animateSwap([name, type, title, tags]);
+}
+document.querySelectorAll('[data-radar-product]').forEach((button) => {
+  button.addEventListener('click', () => {
+    document.querySelectorAll('[data-radar-product]').forEach((tab) => tab.setAttribute('aria-selected', String(tab === button)));
+    updateRadar(button.dataset.radarProduct);
+  });
+});
+addTabKeyboardNavigation('.product-picker');
+updateRadar('brainlab');
+
+const blueprints = [
+  ['01-why-brainsteer.webp', '为什么需要 BrainSteer'], ['15-clinical-painpoints.webp', '三问与四大痛点'],
+  ['12-platform-base.webp', '完整软件底座'], ['13-target-engine.webp', '新靶点发现引擎'],
+  ['09-multi-agent.webp', '多智能体协同'], ['10-target-discovery-workflow.webp', '如何发现新靶点'],
+  ['06-simulation-engine-dark.webp', '刺激仿真引擎'], ['07-simulation-engine-light.webp', '个体化仿真沙盘'],
+  ['17-closed-loop.webp', '实时闭环仿真'], ['14-precision-navigation.webp', '精准定位与导航'],
+  ['11-treatment-chain.webp', '完整治疗链'], ['16-system-moat.webp', '五层技术护城河'],
+  ['04-compare-dark.webp', '同类产品对比 · 深色版'], ['08-compare-light.webp', '同类产品对比 · 白色版'],
+  ['02-precision-outcomes.webp', '精准定位与预期价值 · 待验证'], ['03-outcomes-concept.webp', '临床提升假设 · 待验证'],
+  ['05-market-opportunity.webp', '全球需求与市场机会 · 待核验']
+];
+const blueprintDialog = document.querySelector('#blueprintDialog');
+const blueprintDialogImage = document.querySelector('#blueprintDialogImage');
+const blueprintDialogTitle = document.querySelector('#blueprintDialogTitle');
+let activeBlueprint = 0;
+function showBlueprint(index) {
+  activeBlueprint = (index + blueprints.length) % blueprints.length;
+  const [filename, title] = blueprints[activeBlueprint];
+  if (blueprintDialogImage) { blueprintDialogImage.src = `./assets/blueprints/${filename}`; blueprintDialogImage.alt = title; }
+  if (blueprintDialogTitle) blueprintDialogTitle.textContent = title;
+  if (blueprintDialog && !blueprintDialog.open) {
+    if (blueprintDialog.showModal) blueprintDialog.showModal();
+    else blueprintDialog.setAttribute('open', '');
+  }
+}
+document.querySelectorAll('[data-blueprint]').forEach((button) => button.addEventListener('click', () => showBlueprint(Number(button.dataset.blueprint))));
+document.querySelector('#blueprintClose')?.addEventListener('click', () => blueprintDialog?.close());
+document.querySelector('#blueprintPrev')?.addEventListener('click', () => showBlueprint(activeBlueprint - 1));
+document.querySelector('#blueprintNext')?.addEventListener('click', () => showBlueprint(activeBlueprint + 1));
+blueprintDialog?.addEventListener('click', (event) => { if (event.target === blueprintDialog) blueprintDialog.close(); });
+blueprintDialog?.addEventListener('keydown', (event) => {
+  if (event.key === 'ArrowLeft') showBlueprint(activeBlueprint - 1);
+  if (event.key === 'ArrowRight') showBlueprint(activeBlueprint + 1);
+});
+
+const neuralCanvas = document.querySelector('#neuralCanvas');
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+if (neuralCanvas) {
+  const context = neuralCanvas.getContext('2d');
+  let nodes = [];
+  let pointer = { x: -1000, y: -1000 };
+  function sizeNeuralCanvas() {
+    const ratio = Math.min(window.devicePixelRatio || 1, 1.5);
+    neuralCanvas.width = Math.round(window.innerWidth * ratio);
+    neuralCanvas.height = Math.round(window.innerHeight * ratio);
+    neuralCanvas.style.width = `${window.innerWidth}px`;
+    neuralCanvas.style.height = `${window.innerHeight}px`;
+    context.setTransform(ratio, 0, 0, ratio, 0, 0);
+    const count = window.innerWidth < 700 ? 24 : 46;
+    nodes = Array.from({ length: count }, () => ({ x: Math.random() * window.innerWidth, y: Math.random() * window.innerHeight, vx: (Math.random() - .5) * .12, vy: (Math.random() - .5) * .12, r: Math.random() * 1.5 + .5 }));
+  }
+  function drawNeuralNetwork() {
+    context.clearRect(0, 0, window.innerWidth, window.innerHeight);
+    nodes.forEach((node, index) => {
+      if (!reduceMotion.matches) {
+        node.x += node.vx; node.y += node.vy;
+        if (node.x < 0 || node.x > window.innerWidth) node.vx *= -1;
+        if (node.y < 0 || node.y > window.innerHeight) node.vy *= -1;
+      }
+      for (let next = index + 1; next < nodes.length; next += 1) {
+        const other = nodes[next]; const dx = node.x - other.x; const dy = node.y - other.y; const distance = Math.hypot(dx, dy);
+        if (distance < 145) {
+          context.strokeStyle = `rgba(66,229,206,${(1 - distance / 145) * .08})`;
+          context.beginPath(); context.moveTo(node.x, node.y); context.lineTo(other.x, other.y); context.stroke();
+        }
+      }
+      const pointerDistance = Math.hypot(node.x - pointer.x, node.y - pointer.y);
+      context.fillStyle = pointerDistance < 130 ? 'rgba(105,169,255,.48)' : 'rgba(66,229,206,.25)';
+      context.beginPath(); context.arc(node.x, node.y, node.r, 0, Math.PI * 2); context.fill();
+    });
+    if (!reduceMotion.matches) requestAnimationFrame(drawNeuralNetwork);
+  }
+  sizeNeuralCanvas();
+  drawNeuralNetwork();
+  window.addEventListener('resize', sizeNeuralCanvas, { passive: true });
+  window.addEventListener('pointermove', (event) => { pointer = { x: event.clientX, y: event.clientY }; }, { passive: true });
 }
 
 const consoleButton = document.querySelector('.console-button');
