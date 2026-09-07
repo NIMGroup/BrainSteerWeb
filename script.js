@@ -99,11 +99,11 @@ document.querySelectorAll('[data-solution]').forEach((button) => {
 });
 
 const scenarios = {
-  tms: { kicker: 'NON-INVASIVE STIMULATION', title: '难治性抑郁的个体化 TMS 靶点导航', description: '在个体皮层形态上定位左侧前额叶候选靶点，结合 DLPFC–sgACC 功能关系、白质通路与电场覆盖，形成可解释的刺激计划。', input: 'T1w · dMRI · fMRI · 量表', decision: '靶点 · 线圈方向 · 强度', output: '导航计划 · 疗效评估', tags: ['难治性抑郁', '强迫症', '成瘾'] },
-  dbs: { kicker: 'INVASIVE NEUROMODULATION', title: '运动障碍的 DBS 环路规划与通路评估', description: '围绕 STN、GPi 等候选核团，融合个体解剖、纤维连接、电极轨迹与刺激体积，比较运动环路覆盖和潜在副作用通路。', input: 'T1w · dMRI · CT · 临床评分', decision: '靶点 · 轨迹 · 接触点 · 参数', output: '通路覆盖 · 风险提示', tags: ['帕金森病', '震颤', '肌张力障碍'] },
-  tfus: { kicker: 'TRANSCRANIAL FOCUSED ULTRASOUND', title: '经颅聚焦超声的靶点、声场与安全边界', description: '将颅骨 CT、个体 MRI 与目标脑环路统一到同一空间，辅助选择入射路径，并比较声场聚焦、能量衰减与邻近风险结构。', input: 'T1w · CT · 靶点图谱', decision: '入射路径 · 焦点 · 声学参数', output: '声场方案 · 安全边界', tags: ['深部脑区', '疼痛', '意识障碍研究'] },
-  tes: { kicker: 'ELECTRICAL & TEMPORAL INTERFERENCE', title: 'tES / TI 的个体电场优化与网络剂量设计', description: '结合个体头模型、皮层靶点与深部环路目标，比较电极布局、频率组合和场分布，使刺激剂量从设备参数走向网络剂量。', input: 'T1w · CT 可选 · 电极模型', decision: '电极布局 · 频率 · 强度', output: '电场比较 · 参数建议', tags: ['认知调控', '康复', '深部电刺激研究'] },
-  bci: { kicker: 'BRAIN–COMPUTER INTERFACE', title: '结构连接与实时脑状态的跨模态闭环', description: '把 EEG/MEG 的动态状态映射到个体白质通路和功能网络，用于探索信息传递路径、状态识别与安全约束下的反馈规则。', input: 'dMRI · EEG/MEG · 行为任务', decision: '脑状态 · 通路 · 反馈规则', output: '实时可视化 · 闭环接口', tags: ['脑状态监测', '神经反馈', '闭环研究'] }
+  tms: { kicker: 'NON-INVASIVE STIMULATION', title: '难治性抑郁的个体化 TMS 靶点导航', description: '在个体皮层形态上定位左侧前额叶候选靶点，结合 DLPFC–sgACC 功能关系、白质通路与电场覆盖，形成可解释的刺激计划。', input: 'T1w · dMRI · fMRI · 量表', decision: '靶点 · 线圈方向 · 强度', output: '导航计划 · 疗效评估', tags: ['难治性抑郁', '强迫症', '成瘾'], image: './assets/clinical-tms-v3.webp', alt: 'TMS 门诊中医生使用光学追踪和患者影像进行个体化刺激定位' },
+  dbs: { kicker: 'INVASIVE NEUROMODULATION', title: '运动障碍的 DBS 环路规划与通路评估', description: '围绕 STN、GPi 等候选核团，融合个体解剖、纤维连接、电极轨迹与刺激体积，比较运动环路覆盖和潜在副作用通路。', input: 'T1w · dMRI · CT · 临床评分', decision: '靶点 · 轨迹 · 接触点 · 参数', output: '通路覆盖 · 风险提示', tags: ['帕金森病', '震颤', '肌张力障碍'], image: './assets/clinical-dbs-v3.webp', alt: '神经外科与神经科医生在常规工作站讨论 DBS 靶点和电极轨迹' },
+  tfus: { kicker: 'TRANSCRANIAL FOCUSED ULTRASOUND', title: '经颅聚焦超声的靶点、声场与安全边界', description: '将颅骨 CT、个体 MRI 与目标脑环路统一到同一空间，辅助选择入射路径，并比较声场聚焦、能量衰减与邻近风险结构。', input: 'T1w · CT · 靶点图谱', decision: '入射路径 · 焦点 · 声学参数', output: '声场方案 · 安全边界', tags: ['深部脑区', '疼痛', '意识障碍研究'], image: './assets/clinical-dbs-v3.webp', alt: '临床团队在常规医学影像工作站共同复核深部靶点、路径与邻近风险结构' },
+  tes: { kicker: 'ELECTRICAL & TEMPORAL INTERFERENCE', title: 'tES / TI 的个体电场优化与网络剂量设计', description: '结合个体头模型、皮层靶点与深部环路目标，比较电极布局、频率组合和场分布，使刺激剂量从设备参数走向网络剂量。', input: 'T1w · CT 可选 · 电极模型', decision: '电极布局 · 频率 · 强度', output: '电场比较 · 参数建议', tags: ['认知调控', '康复', '深部电刺激研究'], image: './assets/clinical-tms-v3.webp', alt: '医生在神经调控门诊使用常规设备和医学影像工作站进行治疗计划' },
+  bci: { kicker: 'BRAIN–COMPUTER INTERFACE', title: '结构连接与实时脑状态的跨模态闭环', description: '把 EEG/MEG 的动态状态映射到个体白质通路和功能网络，用于探索信息传递路径、状态识别与安全约束下的反馈规则。', input: 'dMRI · EEG/MEG · 行为任务', decision: '脑状态 · 通路 · 反馈规则', output: '实时可视化 · 闭环接口', tags: ['脑状态监测', '神经反馈', '闭环研究'], image: './assets/clinical-rehab-v3.webp', alt: '脑卒中患者在康复医生指导下进行 EEG 辅助上肢训练' }
 };
 
 const scenarioFields = {
@@ -112,12 +112,14 @@ const scenarioFields = {
   decision: document.querySelector('#scenarioDecision'), output: document.querySelector('#scenarioOutput')
 };
 const scenarioTags = document.querySelector('#scenarioTags');
+const scenarioImage = document.querySelector('#scenarioImage');
 
 document.querySelectorAll('[data-scenario]').forEach((button) => {
   button.addEventListener('click', () => {
     const next = scenarios[button.dataset.scenario];
     document.querySelectorAll('[data-scenario]').forEach((tab) => tab.setAttribute('aria-selected', String(tab === button)));
     Object.entries(scenarioFields).forEach(([key, element]) => { if (element) element.textContent = next[key]; });
+    if (scenarioImage) { scenarioImage.src = next.image; scenarioImage.alt = next.alt; }
     if (scenarioTags) {
       scenarioTags.replaceChildren(...next.tags.map((item) => {
         const span = document.createElement('span');
@@ -125,7 +127,7 @@ document.querySelectorAll('[data-scenario]').forEach((button) => {
         return span;
       }));
     }
-    animateSwap([...Object.values(scenarioFields), scenarioTags]);
+    animateSwap([...Object.values(scenarioFields), scenarioTags, scenarioImage]);
   });
 });
 
@@ -320,8 +322,8 @@ function updateSimulation() {
   });
   const focus = document.querySelector('#fieldFocus');
   const reticle = document.querySelector('#fieldReticle');
-  const x = 48 + offset * 1.2;
-  const y = 42 + state * 2.2;
+  const x = 58 + offset;
+  const y = 38 + state * 1.8;
   if (focus) {
     focus.style.left = `${x}%`;
     focus.style.top = `${y}%`;
@@ -430,84 +432,6 @@ document.querySelectorAll('[data-radar-product]').forEach((button) => {
 });
 addTabKeyboardNavigation('.product-picker');
 updateRadar('brainlab');
-
-const blueprints = [
-  ['01-why-brainsteer.webp', '为什么需要 BrainSteer'], ['15-clinical-painpoints.webp', '三问与四大痛点'],
-  ['12-platform-base.webp', '完整软件底座'], ['13-target-engine.webp', '新靶点发现引擎'],
-  ['09-multi-agent.webp', '多智能体协同'], ['10-target-discovery-workflow.webp', '如何发现新靶点'],
-  ['06-simulation-engine-dark.webp', '刺激仿真引擎'], ['07-simulation-engine-light.webp', '个体化仿真沙盘'],
-  ['17-closed-loop.webp', '实时闭环仿真'], ['14-precision-navigation.webp', '精准定位与导航'],
-  ['11-treatment-chain.webp', '完整治疗链'], ['16-system-moat.webp', '五层技术护城河'],
-  ['04-compare-dark.webp', '同类产品对比 · 深色版'], ['08-compare-light.webp', '同类产品对比 · 白色版'],
-  ['02-precision-outcomes.webp', '精准定位与预期价值 · 待验证'], ['03-outcomes-concept.webp', '临床提升假设 · 待验证'],
-  ['05-market-opportunity.webp', '全球需求与市场机会 · 待核验']
-];
-const blueprintDialog = document.querySelector('#blueprintDialog');
-const blueprintDialogImage = document.querySelector('#blueprintDialogImage');
-const blueprintDialogTitle = document.querySelector('#blueprintDialogTitle');
-let activeBlueprint = 0;
-function showBlueprint(index) {
-  activeBlueprint = (index + blueprints.length) % blueprints.length;
-  const [filename, title] = blueprints[activeBlueprint];
-  if (blueprintDialogImage) { blueprintDialogImage.src = `./assets/blueprints/${filename}`; blueprintDialogImage.alt = title; }
-  if (blueprintDialogTitle) blueprintDialogTitle.textContent = title;
-  if (blueprintDialog && !blueprintDialog.open) {
-    if (blueprintDialog.showModal) blueprintDialog.showModal();
-    else blueprintDialog.setAttribute('open', '');
-  }
-}
-document.querySelectorAll('[data-blueprint]').forEach((button) => button.addEventListener('click', () => showBlueprint(Number(button.dataset.blueprint))));
-document.querySelector('#blueprintClose')?.addEventListener('click', () => blueprintDialog?.close());
-document.querySelector('#blueprintPrev')?.addEventListener('click', () => showBlueprint(activeBlueprint - 1));
-document.querySelector('#blueprintNext')?.addEventListener('click', () => showBlueprint(activeBlueprint + 1));
-blueprintDialog?.addEventListener('click', (event) => { if (event.target === blueprintDialog) blueprintDialog.close(); });
-blueprintDialog?.addEventListener('keydown', (event) => {
-  if (event.key === 'ArrowLeft') showBlueprint(activeBlueprint - 1);
-  if (event.key === 'ArrowRight') showBlueprint(activeBlueprint + 1);
-});
-
-const neuralCanvas = document.querySelector('#neuralCanvas');
-const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-if (neuralCanvas) {
-  const context = neuralCanvas.getContext('2d');
-  let nodes = [];
-  let pointer = { x: -1000, y: -1000 };
-  function sizeNeuralCanvas() {
-    const ratio = Math.min(window.devicePixelRatio || 1, 1.5);
-    neuralCanvas.width = Math.round(window.innerWidth * ratio);
-    neuralCanvas.height = Math.round(window.innerHeight * ratio);
-    neuralCanvas.style.width = `${window.innerWidth}px`;
-    neuralCanvas.style.height = `${window.innerHeight}px`;
-    context.setTransform(ratio, 0, 0, ratio, 0, 0);
-    const count = window.innerWidth < 700 ? 24 : 46;
-    nodes = Array.from({ length: count }, () => ({ x: Math.random() * window.innerWidth, y: Math.random() * window.innerHeight, vx: (Math.random() - .5) * .12, vy: (Math.random() - .5) * .12, r: Math.random() * 1.5 + .5 }));
-  }
-  function drawNeuralNetwork() {
-    context.clearRect(0, 0, window.innerWidth, window.innerHeight);
-    nodes.forEach((node, index) => {
-      if (!reduceMotion.matches) {
-        node.x += node.vx; node.y += node.vy;
-        if (node.x < 0 || node.x > window.innerWidth) node.vx *= -1;
-        if (node.y < 0 || node.y > window.innerHeight) node.vy *= -1;
-      }
-      for (let next = index + 1; next < nodes.length; next += 1) {
-        const other = nodes[next]; const dx = node.x - other.x; const dy = node.y - other.y; const distance = Math.hypot(dx, dy);
-        if (distance < 145) {
-          context.strokeStyle = `rgba(66,229,206,${(1 - distance / 145) * .08})`;
-          context.beginPath(); context.moveTo(node.x, node.y); context.lineTo(other.x, other.y); context.stroke();
-        }
-      }
-      const pointerDistance = Math.hypot(node.x - pointer.x, node.y - pointer.y);
-      context.fillStyle = pointerDistance < 130 ? 'rgba(105,169,255,.48)' : 'rgba(66,229,206,.25)';
-      context.beginPath(); context.arc(node.x, node.y, node.r, 0, Math.PI * 2); context.fill();
-    });
-    if (!reduceMotion.matches) requestAnimationFrame(drawNeuralNetwork);
-  }
-  sizeNeuralCanvas();
-  drawNeuralNetwork();
-  window.addEventListener('resize', sizeNeuralCanvas, { passive: true });
-  window.addEventListener('pointermove', (event) => { pointer = { x: event.clientX, y: event.clientY }; }, { passive: true });
-}
 
 const consoleButton = document.querySelector('.console-button');
 consoleButton?.addEventListener('click', () => {
